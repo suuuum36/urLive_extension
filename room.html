@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--최신 인터넷 익스플로러로 구동한다-->
+        <meta name="viewport" content="width=device-width, initial-scale">  <!--반응형 웹페이지 선언-->
+
+    <!-- user style -->
+    <link rel="stylesheet"  href="room.css" />
+    
+
+    <!--font style -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700&display=swap&subset=korean" rel="stylesheet">
+    </head>
+
+    <div id = "whole">
+        <div class = "header">
+            <img src = "images/textlogo.png" class="textlogo"/>
+            <input id="myInput" type="text" value=''>
+
+            
+            <div class="tooltip">
+                <button onclick="myFunction()" onmouseout="outFunc()">
+                    <span class="tooltiptext" id="myTooltip">초대코드 복사</span>
+                    초대코드
+                </button>
+            </div>
+
+
+        </div>
+
+        <div class = "second_header">
+            <div class = "room_name" id="roomName"> 
+
+            </div>
+
+            <div class = "line"></div>
+            
+            <div class = "outline">
+                <div class = "room_users" id="users"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript" src="room.js"></script>
+</html>

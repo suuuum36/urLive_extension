@@ -1,0 +1,110 @@
+* {                 
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+}
+
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+}
+
+.header {
+    display: flex;
+    height: 48px;
+    width: 100%; 
+    background-color: #ff5343;
+}
+
+.textlogo{
+    height: 20px;
+    width: auto;
+    margin-left: 25px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.second_header {
+    display: flex;
+    height: 48px;
+    width: 100%;
+    z-index: 99;
+    background: #f4f4f4;
+}
+
+.p1 {
+    display: flex;
+    position: relative;
+    font-size: 14px;
+    color: #333333;
+    margin-top: auto;
+    margin-bottom: auto;
+    left: 25px;
+}
+
+.room_number {
+    position: relative;
+    font-size: 14px;
+    color: #ff5343;
+    margin-left: 11px;
+}
+
+.plusbutton {
+    position: absolute;
+    height: 22px;
+    width: auto;
+    right: 25px;
+    margin-top: 13px;
+
+}
+
+.room1 {
+    position: relative;
+    display: flex;
+    height: 79px;
+    width: 100%;
+    z-index: 99;
+    border-bottom: #b7b7b7 1px solid;
+}
+
+.room_content {
+    position: relative;
+    max-width: 194px;
+    margin-top: auto;
+    margin-bottom: auto;
+    left: 25px;
+}
+
+.room_button {
+    position: absolute;
+    height: 19px;
+    width: 58px;
+    right: 21px;
+    margin-top: 30px;
+}
+
+.p2 {
+    display: flex;
+    font-size: 13px;
+    color: #333333;
+    margin-bottom: 5px;
+}
+
+.p2 > p {
+    margin-left: 8px;
+    font-size: 13px;
+    color: #bfbfbf
+}
+
+.p3 {
+    display: flex;
+    font-size: 12px;
+    color: #767676;
+}
+
+

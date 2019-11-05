@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_urLive__",
+  "version": "1.0.0",
+
+  "description": "url live sharing service",
+  "icons": {
+    "16": "images/logo5_1.png"
+  },
+  "default_locale": "ko",
+
+  "sidebar_action": {
+    "default_page": "sidebar.html", 
+    "default_icon": {                
+      "16": "images/logo5_1.png"
+  },
+    "default_title": "urLive",      
+    "use_navigation_bar": true
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+        "matches": ["<all_urls>"],
+        "css": ["contents.css"],
+        "js": ["contents.js"]
+    }
+  ], 
+  
+  "content_security_policy": "script-src 'self' https://www.naver.com; object-src 'self'",
+
+  "web_accessible_resources": [
+    "images/*.png"
+  ],
+  "permissions": [
+    "storage",
+    "tabs"
+  ]
+}
