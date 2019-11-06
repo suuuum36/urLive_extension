@@ -84,6 +84,8 @@ whale.storage.sync.get('uid', result => {
 
                                     usersContainer.append(div)
                                 })
+                                whale.storage.sync.set({site: roomUrl[i]}, () => {
+                                });
 
                                 const copyText = document.querySelector('.tooltip')
                                 copyText.addEventListener('click', () => {

@@ -1,7 +1,8 @@
-const encrypt = localStorage.getItem('encrypt')
-localStorage.setItem("is_selected", encrypt)
 
+const encrypt = localStorage.getItem('encrypt')
 console.log(encrypt)
+
+
 fetch(`http://127.0.0.1:8000/${encrypt}/`, {
     method: 'GET',
     headers:{
@@ -11,17 +12,26 @@ fetch(`http://127.0.0.1:8000/${encrypt}/`, {
     }).then(resJSON => {
         console.log(resJSON)
 
-        const { pincode, users_str, room_name} = resJSON
+        const { pincode, users_str, room_name, memo_str} = resJSON
         const users = users_str.split('/')
         
         const pincodeInput = document.querySelector('#myInput')
         const roomNameContainer = document.querySelector('#roomName')
         const usersContainer = document.querySelector('#users')
+        const memoContainer = document.querySelector('.memo_list')
+        const memos = memo_str.split('/')
 
+        for (let i=0; i<memos.length-1; i++){
+            const div = document.createElement('div')
+            div.innerText = memos[i];
+            memoContainer.append(div)
+
+        }
         pincodeInput.value = pincode
         roomNameContainer.innerText = room_name
 
         for(let i=0; i<users.length-1; i++) {
+            
             const largediv = document.createElement('div')
             const div = document.createElement('div')
             const textdiv = document.createElement('p')
@@ -79,3 +89,69 @@ window.addEventListener(`DOMContentLoaded`, () => {
     });
     
 });
+
+window.addEventListener(`DOMContentLoaded`, () => {
+    // 처음 로딩 될 때: 메시지가 있는지 확인하고 삭제
+    whale.storage.local.get(`message`, storage => {
+        console.log(storage.message); // = Hello
+        if (storage.message) {whale.tabs.create( {url: storage.message});}
+        whale.storage.local.remove(`message`);
+        
+    });
+
+    whale.storage.onChanged.addListener((changes, areaName) => {
+        window.location.reload(true)
+        if (areaName === `local` && changes.newValue) {
+            if (`message` in changes.newValue ) {
+                console.log(changes.newValue.message);
+            }
+            window.location.reload(true)
+        }
+        
+    });
+    
+});
+
+// const memoContainer = document.querySelector('.memo_list')
+
+// window.addEventListener(`DOMContentLoaded`, () => {
+//     // 처음 로딩 될 때: 메시지가 있는지 확인하고 삭제
+//     whale.storage.local.get(`memo_url`, result => {
+//         console.log(result.memo_url); 
+//         if (result.memo_url) {
+//             const div = document.createElement('div')
+//             div.classList.add('urls')
+//             div.innerText= result.memo_url
+//             memoContainer.appendChild(div)
+            
+//         }
+//         // whale.storage.local.remove(`memo_url`);
+        
+//     });
+//     whale.storage.local.get(`memo_content`, result2 => {
+//         console.log(result2.memo_content); 
+//         if (result2.memo_content) {
+//             const div = document.createElement('div')
+//             div.classList.add('urls_content')
+//             div.innerText= result2.memo_content
+//             memoContainer.appendChild(div)
+            
+//         }
+//         // whale.storage.local.remove(`memo_url`);
+        
+//     });
+
+    
+//     // whale.storage.onChanged.addListener((changes, areaName) => {
+//     //     window.location.reload(true)
+//     //     if (areaName === `local` && changes.newValue) {
+//     //         if (`message` in changes.newValue ) {
+//     //             console.log(changes.newValue.message);
+                
+//     //         }
+//     //         window.location.reload(true)
+//     //     }
+        
+//     // });
+    
+// });

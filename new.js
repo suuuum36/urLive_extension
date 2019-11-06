@@ -21,7 +21,8 @@ whale.storage.sync.get('uid', result => {
             const { encrypt } = resJSON
             if (encrypt) {
                 localStorage.setItem("encrypt", encrypt)
-                localStorage.setItem("is_selected", encrypt)
+                whale.storage.sync.set({site: encrypt}, () => {
+                });
                 window.location.href='room.html'
               //   window.location.href = `http://127.0.0.1:8000/${encrypt}/`
             }
