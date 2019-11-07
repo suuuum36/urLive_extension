@@ -1,7 +1,8 @@
 
 const encrypt = localStorage.getItem('encrypt')
 console.log(encrypt)
-
+whale.storage.sync.set({site: encrypt}, () => {
+});
 
 fetch(`http://127.0.0.1:8000/${encrypt}/`, {
     method: 'GET',
@@ -12,18 +13,26 @@ fetch(`http://127.0.0.1:8000/${encrypt}/`, {
     }).then(resJSON => {
         console.log(resJSON)
 
-        const { pincode, users_str, room_name, memo_str} = resJSON
+        const { pincode, users_str, room_name, memo_url, memo_content, memo_author } = resJSON
         const users = users_str.split('/')
         
         const pincodeInput = document.querySelector('#myInput')
         const roomNameContainer = document.querySelector('#roomName')
         const usersContainer = document.querySelector('#users')
-        const memoContainer = document.querySelector('.memo_list')
-        const memos = memo_str.split('/')
 
-        for (let i=0; i<memos.length-1; i++){
+        const memoContainer = document.querySelector('.memo_list') //메모 추가 
+        const memo_url_list = memo_url.split('[partition]') //메모 추가 
+        const memo_content_list = memo_content.split('/')
+        const memo_author_list = memo_author.split('/')
+
+
+        for (let i=0; i<memo_url_list.length-1; i++){
             const div = document.createElement('div')
-            div.innerText = memos[i];
+            div.innerHTML = (i+1) +"."
+            div.innerHTML += " url: " + memo_url_list[i];
+            div.innerHTML += " 작성자: " + memo_author_list[i];
+            div.innerHTML += " 내용: " +memo_content_list[i];
+            div.innerHTML += "<br/>"
             memoContainer.append(div)
 
         }
@@ -90,27 +99,30 @@ window.addEventListener(`DOMContentLoaded`, () => {
     
 });
 
-window.addEventListener(`DOMContentLoaded`, () => {
-    // 처음 로딩 될 때: 메시지가 있는지 확인하고 삭제
-    whale.storage.local.get(`message`, storage => {
-        console.log(storage.message); // = Hello
-        if (storage.message) {whale.tabs.create( {url: storage.message});}
-        whale.storage.local.remove(`message`);
+// setTimeout(function() {
+//     location.reload();
+// }, 30000);
+// window.addEventListener(`DOMContentLoaded`, () => {
+//     // 처음 로딩 될 때: 메시지가 있는지 확인하고 삭제
+//     whale.storage.local.get(`message`, storage => {
+//         console.log(storage.message); // = Hello
+//         if (storage.message) {whale.tabs.create( {url: storage.message});}
+//         whale.storage.local.remove(`message`);
         
-    });
+//     });
 
-    whale.storage.onChanged.addListener((changes, areaName) => {
-        window.location.reload(true)
-        if (areaName === `local` && changes.newValue) {
-            if (`message` in changes.newValue ) {
-                console.log(changes.newValue.message);
-            }
-            window.location.reload(true)
-        }
+//     whale.storage.onChanged.addListener((changes, areaName) => {
+//         window.location.reload(true)
+//         if (areaName === `local` && changes.newValue) {
+//             if (`message` in changes.newValue ) {
+//                 console.log(changes.newValue.message);
+//             }
+//             window.location.reload(true)
+//         }
         
-    });
+//     });
     
-});
+// });
 
 // const memoContainer = document.querySelector('.memo_list')
 
