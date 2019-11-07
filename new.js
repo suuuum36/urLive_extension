@@ -8,7 +8,7 @@ makeButton.addEventListener('click', () => {
   const nickname = document.querySelector('#nickname').value
 
 whale.storage.sync.get('uid', result => {
-    fetch('http://127.0.0.1:8000/make/', {
+    fetch('https://still-anchorage-85470.herokuapp.com/make/', {
         method: 'POST',
         body: JSON.stringify({"name":name, "nickname": nickname, "uid": result.uid}),
         headers:{

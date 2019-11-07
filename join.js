@@ -7,7 +7,7 @@ enterButton.addEventListener('click', () => {
   const nickname = document.querySelector('#nickname').value
 
 whale.storage.sync.get('uid', result => {
-    fetch('http://127.0.0.1:8000/enter/', {
+    fetch('https://still-anchorage-85470.herokuapp.com/enter/', {
         method: 'POST',
         body: JSON.stringify({"pincode":pin, "nickname": nickname, "uid": result.uid}),
         headers:{

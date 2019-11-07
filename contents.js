@@ -98,7 +98,7 @@ document.getElementById('memo_submit').addEventListener('click',function(){
         whale.storage.sync.get('uid', result => {
             console.log(encrypt)
             
-            fetch(`http://127.0.0.1:8000/memo/${encrypt}/`, {
+            fetch(`https://still-anchorage-85470.herokuapp.com/memo/${encrypt}/`, {
     
             
                 method: 'POST',

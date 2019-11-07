@@ -4,7 +4,7 @@ console.log(encrypt)
 whale.storage.sync.set({site: encrypt}, () => {
 });
 
-fetch(`http://127.0.0.1:8000/${encrypt}/`, {
+fetch(`https://still-anchorage-85470.herokuapp.com/${encrypt}/`, {
     method: 'GET',
     headers:{
         'Content-Type': 'application/json'

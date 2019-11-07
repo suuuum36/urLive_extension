@@ -14,7 +14,7 @@ window.addEventListener('load', (event) => {
 
 whale.storage.sync.get('uid', result => {
     const uid = result.uid
-    fetch(`http://127.0.0.1:8000/list/${uid}`, {
+    fetch(`https://still-anchorage-85470.herokuapp.com/list/${uid}`, {
         method: 'GET',
         headers:{
             'Content-Type': 'application/json'
@@ -56,9 +56,17 @@ whale.storage.sync.get('uid', result => {
                     Content.appendChild(div1)
                     Content.appendChild(div2)
                     Room.appendChild(Content)
+
+                    const delete_button = document.createElement("button");
+                    delete_button.innerText = 'delete';
+                    delete_button.style = "position:fixed; left: 10px;"
+                    Room.appendChild(delete_button)
+
                     document.getElementById('roomlist').appendChild(Room)
-                    Room.addEventListener('click', () => {
-                        fetch(`http://127.0.0.1:8000/${roomUrl[i]}/`, {
+                    
+                    Content.addEventListener('click', () => {
+                        localStorage.setItem("encrypt", roomUrl[i])
+                        fetch(`https://still-anchorage-85470.herokuapp.com/${roomUrl[i]}/`, {
                             method: 'GET',
                             headers:{
                                 'Content-Type': 'application/json'
@@ -67,41 +75,27 @@ whale.storage.sync.get('uid', result => {
                             }).then(resJSON => {
                                 console.log(resJSON)
                                 window.location.href='room.html'
-                                const { encrypt, pincode, users_str, room_name} = resJSON
-                                localStorage.setItem("is_selected", encrypt)
-                                const users = users_str.split('/')
-                                const pincodeInput = document.querySelector('#myInput')
-                                const roomNameContainer = document.querySelector('#roomName')
-                                const usersContainer = document.querySelector('#users')
+                                
+                            })
 
-                                pincodeInput.value = pincode
-                                roomNameContainer.innerText = room_name
-
-                                users.forEach((u, i) => {
-                                    const div = document.createElement('div')
-                                    div.innerText = u
-                                    div.key = i
-
-                                    usersContainer.append(div)
-                                })
-                                whale.storage.sync.set({site: roomUrl[i]}, () => {
-                                });
-
-                                const copyText = document.querySelector('.tooltip')
-                                copyText.addEventListener('click', () => {
-                                    var copyText = document.getElementById("myInput");
-                                    copyText.select();
-                                    copyText.setSelectionRange(0, 99999);
-                                    document.execCommand("copy");
-
-                                    var tooltip = document.getElementById("myTooltip");
-                                    tooltip.innerHTML = "복사완료: " + copyText.value;
-                                })
+                    })
+                    delete_button.addEventListener('click', () =>{
+                        fetch(`https://still-anchorage-85470.herokuapp.com/delete/${uid}/${roomUrl[i]}/`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }}).then(res => {
+                                return res.json()
+                            }).then(resJSON => {
+                                console.log(resJSON)
+                                
+                                window.location.href='sidebar.html'
+                                window.reload(true)
                             })
 
                     })
                 }
             }
                     
-        })
-    });
+        })   
+});
