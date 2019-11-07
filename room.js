@@ -35,7 +35,7 @@ fetch(`http://127.0.0.1:8000/${encrypt}/`, {
             div.innerHTML += " 내용: " +memo_content_list[i];
             const a_tag = document.createElement('a')
             a_tag.href = memo_url_list[i];
-            a_tag.innerText= "링크"
+            a_tag.innerText= memo_url_list[i].substring(0,30) + "..."
             a_tag.target= "_blank"
             div.appendChild(a_tag)
             memoContainer.append(div)
