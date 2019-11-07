@@ -40,7 +40,7 @@ container.innerHTML = `
         <div class = "memo_text_area">
         <textarea class = "memo_text" id="memo_area" name="메모입력" rows="1" cols="1" placeholder="메모를 입력하세요."></textarea>
         <div class = "memo_submit_button">
-            <input type="submit" id="memo_submit" value="저장"/>
+            <input class = "submit_button" type="submit" id="memo_submit" value="저장"/>
             <input class = 'cancel_button2' type="submit" value="취소"/>
         </div>
         </div>
@@ -65,6 +65,13 @@ cancelButton2.addEventListener('click', () => {
     const memoBox = document.querySelector('.memo_box')
     memoBox.style.display = 'none'
 })
+
+const submitButton = document.querySelector('.submit_button')
+submitButton .addEventListener('click', () => {
+    const memoBox = document.querySelector('.memo_box')
+    memoBox.style.display = 'none'
+})
+
 
 const memoButton = document.querySelector("#memoButton")
 memoButton.addEventListener('click', () => {
