@@ -9,21 +9,25 @@ enterButton.addEventListener('click', () => {
 whale.storage.sync.get('uid', result => {
     fetch('https://still-anchorage-85470.herokuapp.com/enter/', {
         method: 'POST',
-        body: JSON.stringify({"pincode":pin, "nickname": nickname, "uid": result.uid}),
+        body: JSON.stringify({"pincode": pin, "nickname": nickname, "uid": result.uid}),
         headers:{
             'Content-Type': 'application/json'
         }
         }).then(res => {
             return res.json()
         }).then(resJSON => {
+            
             console.log(resJSON)
-            const { encrypt } = resJSON
+            const { encrypt }= resJSON
+            console.log(encrypt)
             if (encrypt) {
-                localStorage.setItem("encrypt", encrypt)
+                console.log(encrypt)
                 whale.storage.sync.set({site: encrypt}, () => {
                 });
                 window.location.href='room.html'
             }
+
+        
         })
     });
 })
