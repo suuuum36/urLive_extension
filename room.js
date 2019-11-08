@@ -29,7 +29,7 @@ whale.storage.sync.get('site', result => {
         const memo_author_list = memo_author.split('/')
         const shared_urls = shared_list.split('[partition]')
 
-        var shared_urls_length = shared_urls.length -2
+        const shared_urls_length = shared_urls.length -2
 
         if (shared_urls.length != 1) { whale.tabs.create( {url: shared_urls[shared_urls_length]});}
         console.log(shared_urls)
@@ -106,18 +106,19 @@ whale.storage.sync.get('site', result => {
             copyText.select();
             copyText.setSelectionRange(0, 99999);
             document.execCommand("copy");
-
+    
             var tooltip = document.getElementById("myTooltip");
             tooltip.innerHTML = "복사완료 : " + copyText.value;
         })
-
+    
         const again = document.querySelector('.tooltip')
         again.addEventListener("mouseout", () => {
             var again = document.getElementById("myTooltip");
             again.innerHTML = "초대코드 복사";
         })
+        
     })
-
+    
 
 
 
