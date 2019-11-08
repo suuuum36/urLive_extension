@@ -1,10 +1,13 @@
 
-const encrypt = localStorage.getItem('encrypt')
-console.log(encrypt)
-whale.storage.sync.set({site: encrypt}, () => {
-});
+// chrome.storage.local.get(['encrypt'], function(result) {
+//     console.log('Value currently is ' + result.encrypt)
+//     const encrypt = result.encrypt;
+//     console.log(encrypt)
 
-fetch(`https://still-anchorage-85470.herokuapp.com/${encrypt}/`, {
+
+whale.storage.sync.get('site', result => {
+    const encrypt= result.site
+    fetch(`https://still-anchorage-85470.herokuapp.com/${encrypt}/`, {
     method: 'GET',
     headers:{
         'Content-Type': 'application/json'
@@ -13,7 +16,7 @@ fetch(`https://still-anchorage-85470.herokuapp.com/${encrypt}/`, {
     }).then(resJSON => {
         console.log(resJSON)
 
-        const { pincode, users_str, room_name, memo_url, memo_content, memo_author } = resJSON
+        const { pincode, users_str, room_name, memo_url, memo_content, memo_author, shared_list } = resJSON
         const users = users_str.split('/')
         
         const pincodeInput = document.querySelector('#myInput')
@@ -24,23 +27,62 @@ fetch(`https://still-anchorage-85470.herokuapp.com/${encrypt}/`, {
         const memo_url_list = memo_url.split('[partition]') //메모 추가 
         const memo_content_list = memo_content.split('/')
         const memo_author_list = memo_author.split('/')
+        const shared_urls = shared_list.split('/')
+
+        var shared_urls_length = shared_urls.length -1
+
+        if (shared_urls) { whale.tabs.create( {url: shared_urls[shared_urls_length]});}
 
         //이 부분 다시 짜야 cs 적용 가능.
         for (let i=0; i<memo_url_list.length-1; i++){
-            const div = document.createElement('div')
-            div.classList.add('big_memo_container')
-            div.innerHTML = (i+1) +"."
+
+            const outDiv = document.createElement ('div')
+            outDiv.classList.add('out_div')
             
-            div.innerHTML += " 작성자: " + memo_author_list[i];
-            div.innerHTML += " 내용: " +memo_content_list[i];
+            const urlDiv =document.createElement ('div')
+            urlDiv.classList.add('url_div')
+
             const a_tag = document.createElement('a')
+            a_tag.classList = "urltag"
             a_tag.href = memo_url_list[i];
-            a_tag.innerText= memo_url_list[i].substring(0,30) + "..."
+            if (memo_url_list[i].length>50){a_tag.innerText= memo_url_list[i].substring(0,50) + "..."}
+            else {a_tag.innerText= memo_url_list[i].substring(0,50)}
             a_tag.target= "_blank"
-            div.appendChild(a_tag)
-            memoContainer.append(div)
+            urlDiv.appendChild(a_tag)
+            
+            const contentsDiv = document.createElement('div')
+            contentsDiv.classList.add('contents_div')
+
+            const writer = document.createElement('div')
+            writer.classList.add('writer')
+            writer.innerHTML += memo_author_list[i];
+
+            const line = document.createElement ('div')
+            line.classList.add('line2')
+
+            const memoContent = document.createElement('div')
+            memoContent.classList.add('memo_content')
+            memoContent.innerHTML += memo_content_list[i];
+            contentsDiv.appendChild(writer)
+            contentsDiv.appendChild(line)
+            contentsDiv.appendChild(memoContent)
+
+            outDiv.appendChild(urlDiv);
+            outDiv.appendChild(contentsDiv);
+            memoContainer.append(outDiv);
+
+            const removeImg = document.querySelector('.background');
+            removeImg.style.display = 'none'
 
         }
+
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 07538f57988bb7301a50d3a5a16f6d0a9a8a9d5e
         pincodeInput.value = pincode
         roomNameContainer.innerText = room_name
 
@@ -58,7 +100,7 @@ fetch(`https://still-anchorage-85470.herokuapp.com/${encrypt}/`, {
             div.appendChild(textdiv)
             largediv.appendChild(div)
             usersContainer.append(largediv)
-            const myArray = ['#8fc100', '#5da0ff', '#ffbde6', '#a459fc'];    
+            const myArray = ['#8fc100', '#5da0ff', '#ffbde6', '#a459fc', '#f94e83', '#ff8548', '#0055d1', '#ffcc00'];    
             const rand = myArray[Math.floor(Math.random() * myArray.length)];
             document.getElementById(`${i}`).style.backgroundColor = rand;
         }
@@ -72,7 +114,7 @@ fetch(`https://still-anchorage-85470.herokuapp.com/${encrypt}/`, {
             document.execCommand("copy");
 
             var tooltip = document.getElementById("myTooltip");
-            tooltip.innerHTML = "복사완료: " + copyText.value;
+            tooltip.innerHTML = "복사완료 : " + copyText.value;
         })
 
         const again = document.querySelector('.tooltip')
@@ -83,26 +125,39 @@ fetch(`https://still-anchorage-85470.herokuapp.com/${encrypt}/`, {
     })
 
 
-window.addEventListener(`DOMContentLoaded`, () => {
-    // 처음 로딩 될 때: 메시지가 있는지 확인하고 삭제
-    whale.storage.local.get(`message`, storage => {
-        console.log(storage.message); // = Hello
-        if (storage.message) {whale.tabs.create( {url: storage.message});}
-        whale.storage.local.remove(`message`);
-        
-    });
-    whale.storage.onChanged.addListener((changes, areaName) => {
-        window.location.reload(true)
-        if (areaName === `local` && changes.newValue) {
-            if (`message` in changes.newValue ) {
-                console.log(changes.newValue.message);
-            }
-            window.location.reload(true)
-        }
-        
-    });
-    
+
+
 });
+    
+
+// const encrypt = localStorage.getItem('encrypt')
+
+
+
+// window.addEventListener(`DOMContentLoaded`, () => {
+//     // 처음 로딩 될 때: 메시지가 있는지 확인하고 삭제
+//     whale.storage.sync.get(`message`, storage => {
+//         console.log(storage.message); // = Hello
+//         if (storage.message) { whale.tabs.create( {url: storage.message});}
+//         whale.storage.sync.remove(`message`);
+        
+//     });
+//     whale.storage.onChanged.addListener((changes, areaName) => {
+//         window.location.reload(true)
+//         if (areaName === `local` && changes.newValue) {
+//             if (`message` in changes.newValue ) {
+//                 console.log(changes.newValue.message);
+//             }
+//             window.location.reload(true)
+//         }
+        
+//     });
+    
+// });
+
+
+
+
 
 // setTimeout(function() {
 //     location.reload();

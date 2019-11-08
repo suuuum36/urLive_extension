@@ -23,7 +23,7 @@
 
 .second_header {
     display: flex;
-    height: 48px;
+    min-height: 48px;
     width: 100%;
     z-index: 99;
     background: #f4f4f4;
@@ -32,6 +32,7 @@
 /* 방제 + 구성원 */
 
 .room_name {
+    min-width: fit-content;
     font-size: 14px;
     color: #333333;
     margin-left: 25px;
@@ -57,19 +58,23 @@
 }
 
 .room_users {
+    flex-wrap: wrap;
     display: flex;
+    padding-top: 8px;
+    padding-bottom: 4px;
 }
 
 .outerline {
     display: flex;
     margin-top: auto;
-    margin-bottom: auto;
+    margin-bottom: 4px;
     margin-right: 6px;
     height: 24px;
     width: 24px;
     border-radius: 50%;
     border: 1px solid #858585;
 }
+
 
 .users {
     display: flex;
@@ -143,3 +148,79 @@
     visibility: visible;
     opacity: 1;
   }
+
+
+  /* 메모리스트 부분 */
+
+  .out_div {  
+    margin: 8px;
+  }
+
+  .url_div { 
+    display: flex;
+    height: 47px;
+    width: 100%; 
+    background-color: #f4f4f4;
+  }
+
+  .urltag {
+      position: relative;
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-left: 20px;
+      font-weight: 400;
+      color: #555;
+      text-decoration: none;
+  }
+
+  .urltag:hover {
+    text-decoration-line: underline;
+  }
+  
+
+  .contents_div {
+    margin-top: 8px;
+    display: flex;
+    min-height: 45px;
+    border-radius: 6px;
+    border: 2px solid #f4f4f4;
+    width: -webkit-fill-available;
+  }
+  
+  .line2 {
+    border-left: 2px #cbced3 solid;
+    border-radius: 2px;
+    height: 8px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.writer {
+    min-width: 23px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 20px;
+    color: #ff5343;
+}
+
+.memo_content {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 6px;
+    font-weight: 400;
+}
+
+/* 중간 이미지 */
+
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+}
