@@ -57,11 +57,18 @@ whale.storage.sync.get('uid', result => {
                     Content.appendChild(div2)
                     Room.appendChild(Content)
 
-                    const delete_button = document.createElement("button");
-                    delete_button.innerText = 'delete';
-                    delete_button.style = "position:fixed; left: 10px;"
-                    Room.appendChild(delete_button)
 
+                    const deleteDiv = document.createElement('div')
+                    deleteDiv.classList.add('delete_div')
+
+                    const deleteImg = whale.runtime.getURL(`images/out_icon.png`);
+                    const delete_button = document.createElement('img');
+                    delete_button.style = "position: relative; height: 18px; width: auto; margin-top: auto; margin-bottom: auto;"
+                    delete_button.src = deleteImg;
+
+                    deleteDiv.appendChild(delete_button)
+
+                    document.getElementById('roomlist').appendChild(deleteDiv)
                     document.getElementById('roomlist').appendChild(Room)
                     
                     Content.addEventListener('click', () => {

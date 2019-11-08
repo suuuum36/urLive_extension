@@ -72,18 +72,14 @@ whale.storage.sync.get('site', result => {
             outDiv.appendChild(contentsDiv);
             memoContainer.append(outDiv);
 
-            const removeImg = document.querySelector('.background');
+            const removeImg = document.querySelector('.background_img');
             removeImg.style.display = 'none'
+
+            const removeDiv = document.querySelector('.background_logo');
+            removeDiv.style.display = 'none'
 
         }
 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> b84af5f90af5b881ac9e04a4cf8d067116843312
         pincodeInput.value = pincode
         roomNameContainer.innerText = room_name
 

@@ -156,3 +156,11 @@
     visibility: visible;
     opacity: 1;
   }
+
+  /* 방삭제하기 버튼 */
+
+  .delete_div {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+  }
