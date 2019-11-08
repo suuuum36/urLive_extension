@@ -58,25 +58,30 @@
     position: absolute;
     height: 22px;
     width: auto;
-    right: 25px;
     margin-top: 13px;
-
 }
 
 .room1 {
     position: relative;
     display: flex;
-    height: 79px;
+    min-height: 79px;
     width: 100%;
     z-index: 99;
     border-bottom: #b7b7b7 1px solid;
 }
 
+.room1:hover {
+    background-color: #e8e8e8;
+  }
+  
+
 .room_content {
     position: relative;
-    max-width: 194px;
+    max-width: 280px;
     margin-top: auto;
     margin-bottom: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
     left: 25px;
 }
 
@@ -108,3 +113,46 @@
 }
 
 
+/* 방추가하기 팝업 */
+#myInput {
+    opacity: 0;
+}
+
+.tooltip {
+    position: absolute;
+    display: flex;
+    right: 45px;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    min-width: 95px;
+    background-color: #555;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 300;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 110%;
+    right: 0;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
