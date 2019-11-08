@@ -76,13 +76,10 @@ whale.storage.sync.get('site', result => {
 
         }
 
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> 07538f57988bb7301a50d3a5a16f6d0a9a8a9d5e
         pincodeInput.value = pincode
         roomNameContainer.innerText = room_name
 
