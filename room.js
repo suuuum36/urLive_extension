@@ -4,7 +4,6 @@
 //     const encrypt = result.encrypt;
 //     console.log(encrypt)
 
-
 whale.storage.sync.get('site', result => {
     const encrypt= result.site
     fetch(`https://still-anchorage-85470.herokuapp.com/${encrypt}/`, {
@@ -31,8 +30,12 @@ whale.storage.sync.get('site', result => {
 
         const shared_urls_length = shared_urls.length -2
 
-        if (shared_urls.length != 1) { whale.tabs.create( {url: shared_urls[shared_urls_length]});}
+        if (shared_urls.length != 1) {
+            whale.tabs.create( {url: shared_urls[shared_urls_length]});
+        }
+        
         console.log(shared_urls)
+
 
         //이 부분 다시 짜야 cs 적용 가능.
         for (let i=0; i<memo_url_list.length-1; i++){
