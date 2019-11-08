@@ -20,6 +20,10 @@ whale.storage.sync.get('uid', result => {
             console.log(resJSON)
             const { encrypt } = resJSON
             if (encrypt) {
+
+                // whale.storage.local.set({encrypt: encrypt}, function() {
+                //     console.log('Value is set to ' + encrypt);
+                // });
                 // localStorage.setItem("encrypt", encrypt)
                 whale.storage.sync.set({site: encrypt}, () => {
                 });

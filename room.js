@@ -109,7 +109,7 @@
                 
             });
     
-});
+// });
 
 // setTimeout(function() {
 //     location.reload();
