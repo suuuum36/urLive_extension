@@ -29,7 +29,7 @@ whale.storage.sync.get('site', result => {
         const memo_author_list = memo_author.split('/')
         const shared_urls = shared_list.split('/')
 
-        var shared_urls_length = shared_urls.length -1
+        var shared_urls_length = shared_urls.length -2
 
         if (shared_urls) { whale.tabs.create( {url: shared_urls[shared_urls_length]});}
 
@@ -76,13 +76,10 @@ whale.storage.sync.get('site', result => {
 
         }
 
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> 07538f57988bb7301a50d3a5a16f6d0a9a8a9d5e
         pincodeInput.value = pincode
         roomNameContainer.innerText = room_name
 
