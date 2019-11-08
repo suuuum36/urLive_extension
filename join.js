@@ -17,10 +17,13 @@ whale.storage.sync.get('uid', result => {
             return res.json()
         }).then(resJSON => {
             console.log(resJSON)
-            const { encrypt } = resJSON
+            const { encrypt, exist } = resJSON
             if (encrypt) {
-                localStorage.setItem("encrypt", encrypt)
+                console.log(encrypt);
+                // localStorage.setItem("encrypt", encrypt)
                 whale.storage.sync.set({site: encrypt}, () => {
+                });
+                whale.storage.sync.set({exist: exist}, () => {
                 });
                 window.location.href='room.html'
             }
