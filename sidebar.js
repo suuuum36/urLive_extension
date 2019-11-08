@@ -36,6 +36,22 @@ whale.storage.sync.get('uid', result => {
                 for ( let i=0; i<roomName.length-1; i++) {
                     const Room = document.createElement('div')
                     Room.classList.add('room1')
+
+                    const deleteDiv = document.createElement('div')
+                    deleteDiv.classList.add('delete_div')
+
+                    const deleteImg = whale.runtime.getURL(`images/out_icon.png`);
+                    const delete_button = document.createElement('img');
+                    delete_button.style = "position: relative; height: 18px; width: auto; margin-top: auto; margin-bottom: auto;"
+                    delete_button.src = deleteImg;
+                    deleteDiv.appendChild(delete_button)
+
+                    //삭제 버튼 tooltip
+                    const tooltip = document.createElement ('div')
+                    tooltip.classList.add('tooltiptext')
+                    tooltip.innerHTML = "방 나가기"
+                    deleteDiv.appendChild(tooltip)
+
                     const Content = document.createElement('div')
                     Content.classList.add('room_content')
                     const div1 = document.createElement('div')
@@ -55,24 +71,12 @@ whale.storage.sync.get('uid', result => {
                     div1.appendChild(pNum)
                     Content.appendChild(div1)
                     Content.appendChild(div2)
+                    Room.appendChild(deleteDiv)
                     Room.appendChild(Content)
-
-
-                    const deleteDiv = document.createElement('div')
-                    deleteDiv.classList.add('delete_div')
-
-                    const deleteImg = whale.runtime.getURL(`images/out_icon.png`);
-                    const delete_button = document.createElement('img');
-                    delete_button.style = "position: relative; height: 18px; width: auto; margin-top: auto; margin-bottom: auto;"
-                    delete_button.src = deleteImg;
-
-                    deleteDiv.appendChild(delete_button)
-
-                    document.getElementById('roomlist').appendChild(deleteDiv)
                     document.getElementById('roomlist').appendChild(Room)
-                    
-                    Content.addEventListener('click', () => {
 
+
+                    Content.addEventListener('click', () => {
 
                         // localStorage.setItem("encrypt", roomUrl[i])
                         whale.storage.sync.set({site: roomUrl[i]}, function() {
