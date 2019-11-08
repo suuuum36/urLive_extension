@@ -27,11 +27,12 @@ whale.storage.sync.get('site', result => {
         const memo_url_list = memo_url.split('[partition]') //메모 추가 
         const memo_content_list = memo_content.split('/')
         const memo_author_list = memo_author.split('/')
-        const shared_urls = shared_list.split('/')
+        const shared_urls = shared_list.split('[partition]')
 
-        var shared_urls_length = shared_urls.length -1
+        var shared_urls_length = shared_urls.length -2
 
-        if (shared_urls) { whale.tabs.create( {url: shared_urls[shared_urls_length]});}
+        if (shared_urls.length != 1) { whale.tabs.create( {url: shared_urls[shared_urls_length]});}
+        console.log(shared_urls)
 
         //이 부분 다시 짜야 cs 적용 가능.
         for (let i=0; i<memo_url_list.length-1; i++){
@@ -75,10 +76,6 @@ whale.storage.sync.get('site', result => {
             removeImg.style.display = 'none'
 
         }
-
-
-
-
 
         pincodeInput.value = pincode
         roomNameContainer.innerText = room_name
