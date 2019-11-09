@@ -1,4 +1,4 @@
-console.log('FDasdfafdsf')
+
 const makeButton = document.querySelector('.make_room_button')
 
 // whale.storage.sync 가 background 에서 uid를 생성못시키고, set을 못시켜서 빈값을 넘겨줌.
@@ -21,10 +21,6 @@ whale.storage.sync.get('uid', result => {
             const { encrypt } = resJSON
             if (encrypt) {
 
-                // whale.storage.local.set({encrypt: encrypt}, function() {
-                //     console.log('Value is set to ' + encrypt);
-                // });
-                // localStorage.setItem("encrypt", encrypt)
                 whale.storage.sync.set({site: encrypt}, () => {
                 });
                 window.location.href='room.html'

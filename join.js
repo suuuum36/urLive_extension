@@ -15,11 +15,10 @@ whale.storage.sync.get('uid', result => {
         }
         }).then(function(response) {
             if (!response.ok) {
-                alert('이미 존재하는 방입니다')
+                alert('이미 입장하였거나 존재하지 않는 방입니다')
             }
             return response;
         }).then(resJSON => {
-            
             console.log(resJSON)
             const { encrypt }= resJSON
             console.log(encrypt)

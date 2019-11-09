@@ -84,8 +84,6 @@ document.getElementById('memo_submit').addEventListener('click',function(){
             console.log(encrypt)
             
             fetch(`https://still-anchorage-85470.herokuapp.com/memo/${encrypt}/`, {
-    
-            
                 method: 'POST',
                 body: JSON.stringify({"url": memo_url, "content": memo_content, "uid": result.uid}),
                 headers:{
