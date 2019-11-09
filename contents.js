@@ -95,8 +95,7 @@ document.getElementById('memo_submit').addEventListener('click',function(){
     const memoReset = document.querySelector('.memo_text')
     memoReset.value = memoReset.defaultValue;
 
-    whale.runtime.sendMessage(`new_memo`, function() {
-    });
+    
     
 })
 
@@ -127,8 +126,7 @@ document.getElementById('shareButton').addEventListener('click',function(){
         
 
     })
-    whale.runtime.sendMessage(`shared`, function() {
-    });
+    
     
 })
 

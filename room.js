@@ -54,22 +54,7 @@ whale.storage.sync.get('site', result => {
                 }, 1500)                
 
             }
-            whale.runtime.onMessage.addListener((message) => {
-                if (message === `shared`) {
-                    setTimeout(function(){
-                        window.location.reload();
-                    }, 100);
-                }
-                else if (message === 'new_memo'){
-                    setTimeout(function(){
-                        window.location.reload();
-                    }, 100);
-                }
-            });
-
-        
-           
-
+            
 
             for (let i=0; i<memo_url_list.length-1; i++){
 
