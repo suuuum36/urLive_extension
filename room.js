@@ -36,6 +36,9 @@ whale.storage.sync.get('site', result => {
 
                 if (the_sender !== user.uid){
                     whale.tabs.create( {url: shared_urls[shared_urls_length]});
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 100);
                 }
                 
                 fetch(`https://still-anchorage-85470.herokuapp.com/share/${encrypt}/`, {
