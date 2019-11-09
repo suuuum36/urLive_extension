@@ -1,8 +1,8 @@
 
 whale.storage.sync.get('site', result => {
-
+    const encrypt= result.site
     whale.storage.sync.get('uid', user =>{
-        const encrypt= result.site
+        
         fetch(`https://still-anchorage-85470.herokuapp.com/${encrypt}/`, {
         method: 'GET',
         headers:{
@@ -10,7 +10,7 @@ whale.storage.sync.get('site', result => {
         }}).then(res => {
             return res.json()
         }).then(resJSON => {
-            console.log(resJSON)
+            
 
             const { pincode, users_str, room_name, memo_url, memo_content, memo_author, shared_list ,sender } = resJSON
             const users = users_str.split('/')
@@ -36,21 +36,22 @@ whale.storage.sync.get('site', result => {
             const shared_urls_length = shared_urls.length -2
 
             const the_sender = sender.split('/')[0]
-            console.log(the_sender)
+            
 
             if (shared_urls.length != 1) {
 
                 if (the_sender !== user.uid){
                     whale.tabs.create( {url: shared_urls[shared_urls_length]});    
                 }
-                
-                // fetch(`https://still-anchorage-85470.herokuapp.com/share/${encrypt}/`, {
-                //     method: 'PUT',
-                //     body: JSON.stringify({"url": shared_urls[shared_urls_length]}),
-                //     headers: {
-                //         'Content-Type': 'application/json'
-                // }}).then(resJSON => {  
-                // })
+                setTimeout (function(){
+                    fetch(`https://still-anchorage-85470.herokuapp.com/share/${encrypt}/`, {
+                        method: 'PUT',
+                        body: JSON.stringify({"url": shared_urls[shared_urls_length]}),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }}).then(resJSON => {  
+                        })
+                }, 1500)                
 
             }
             whale.runtime.onMessage.addListener((message) => {
@@ -67,7 +68,7 @@ whale.storage.sync.get('site', result => {
             });
 
         
-            console.log(shared_urls)
+           
 
 
             for (let i=0; i<memo_url_list.length-1; i++){
@@ -122,7 +123,7 @@ whale.storage.sync.get('site', result => {
                 const textdiv = document.createElement('p')
                 largediv.classList.add('outerline')
                 div.classList.add('users')
-                console.log(users[i]);
+                
                 textdiv.innerText = users[i].substring(0,2)
                 div.key = i
                 div.id = i
@@ -173,12 +174,14 @@ setInterval(function() {
             whale.storage.sync.get('memo_url', result =>{
                 if (result.memo_url !== memo_url){
                     window.location.reload()
+
                 }
 
             });
             whale.storage.sync.get('shared_list', result =>{
+
                 if (result.shared_list !== shared_list){
-                    window.location.reload()
+                    window.location.reload()                  
                 }
 
             });

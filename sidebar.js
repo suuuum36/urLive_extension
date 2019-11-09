@@ -29,10 +29,9 @@ whale.storage.sync.get('uid', result => {
             const roomName = room_name_arr.split('/')
             const roomUrl = room_url_arr.split('/')
             const roomParti = room_part_arr.split('/')
-            console.log(roomParti)
+            
             document.getElementById('roomCnt').innerText = roomName.length-1;
-            console.log(roomName);
-            console.log(roomUrl);
+            
             if (roomName) {
                 for ( let i=0; i<roomName.length-1; i++) {
                     const Room = document.createElement('div')
@@ -85,7 +84,7 @@ whale.storage.sync.get('uid', result => {
 
                         // localStorage.setItem("encrypt", roomUrl[i])
                         whale.storage.sync.set({site: roomUrl[i]}, function() {
-                            console.log('Value is set to ' + roomUrl[i]);
+                            
                         });
                         fetch(`https://still-anchorage-85470.herokuapp.com/${roomUrl[i]}/`, {
 
@@ -95,7 +94,7 @@ whale.storage.sync.get('uid', result => {
                             }}).then(res => {
                                 return res.json()
                             }).then(resJSON => {
-                                console.log(resJSON)
+                                
                                 window.location.href='room.html'
                                 
                             })
@@ -108,7 +107,7 @@ whale.storage.sync.get('uid', result => {
                                 headers: {
                                     'Content-Type': 'application/json'
                                 }}).then(resJSON => {
-                                    console.log(resJSON)
+                                    
                                     setTimeout(function(){
                                         window.location.reload();
                                     }, 1);

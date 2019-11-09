@@ -17,14 +17,14 @@ whale.storage.sync.get('uid', result => {
         }).then(res => {
             return res.json()
         }).then(resJSON => {
-            console.log(resJSON)
+           
             const { encrypt } = resJSON
             if (encrypt) {
 
                 whale.storage.sync.set({site: encrypt}, () => {
                 });
                 window.location.href='room.html'
-              //   window.location.href = `http://127.0.0.1:8000/${encrypt}/`
+              
             }
         })
     });

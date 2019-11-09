@@ -32,7 +32,7 @@ container.innerHTML = `
     </div>
 `
 
-// 처음 윈도우 켰을 때 메모 팝업 내용 X //
+
 
 window.addEventListener('load', (event) => {
     const noPopup = document.querySelector('.memo_box');
@@ -74,9 +74,7 @@ document.getElementById('memo_submit').addEventListener('click',function(){
     memo_url = String(window.location.href);
     memo_content= String(document.getElementById('memo_area').value);
     whale.storage.sync.get('site', result => {
-        // console.log(result.site)
         encrypt=result.site
-        // console.log(encrypt)
         whale.storage.sync.get('uid', result => {
             console.log(encrypt)
             
@@ -103,15 +101,13 @@ document.getElementById('memo_submit').addEventListener('click',function(){
 })
 
 
-//공유하기 버튼//
+
 document.getElementById('shareButton').addEventListener('click',function(){
     const url = String(window.location.href);
     var encrypt; 
 
     whale.storage.sync.get('site', result => {
-        // console.log(result.site)
         encrypt=result.site
-        // console.log(encrypt)
         whale.storage.sync.get('uid', result => {
             console.log(encrypt)
             
