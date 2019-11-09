@@ -1,3 +1,5 @@
+
+
 whale.storage.sync.get('site', result => {
     const encrypt= result.site
     whale.storage.sync.get('uid', user =>{
@@ -29,7 +31,15 @@ whale.storage.sync.get('site', result => {
             const the_sender = sender.split('/')[0]
             if (shared_urls.length != 1) {
                 if (the_sender !== user.uid){
-                    whale.tabs.create( {url: shared_urls[shared_urls_length]});    
+                    
+                    setTimeout(function(){
+                        whale.tabs.create({url: shared_urls[shared_urls_length], active: false }, tab =>{
+                            setTimeout(function(){
+                                whale.tabs.remove(tab.id);
+                            },1000);
+                        }); 
+                    },1000);
+                      
                 }
                 setTimeout( function(){
                     fetch(`https://still-anchorage-85470.herokuapp.com/share/${encrypt}/`, {
