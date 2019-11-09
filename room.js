@@ -1,6 +1,3 @@
-
-
-
 whale.storage.sync.get('site', result => {
     const encrypt= result.site
     whale.storage.sync.get('uid', user =>{
@@ -35,9 +32,9 @@ whale.storage.sync.get('site', result => {
                     
                     setTimeout(function(){
                         whale.tabs.create({url: shared_urls[shared_urls_length], active: false }, tab =>{
-                            setTimeout(function(){
-                                whale.tabs.remove(tab.id);
-                            },1000);
+                            // setTimeout(function(){
+                            //     whale.tabs.remove(tab.id);
+                            // },1000);
                         }); 
                     },1000);
                       
@@ -52,7 +49,7 @@ whale.storage.sync.get('site', result => {
                     })
                 }, 1500)
             }
-            for (let i=0; i<memo_url_list.length-1; i++){
+            for (let i=memo_url_list.length-2; i>=0; i--){
                 const outDiv = document.createElement ('div')
                 outDiv.classList.add('out_div')
                 const urlDiv =document.createElement ('div')
@@ -64,24 +61,34 @@ whale.storage.sync.get('site', result => {
                 else {a_tag.innerText= memo_url_list[i].substring(0,50)}
                 a_tag.target= "_blank"
                 urlDiv.appendChild(a_tag)
+
                 const contentsDiv = document.createElement('div')
                 contentsDiv.classList.add('contents_div')
+
                 const writer = document.createElement('div')
                 writer.classList.add('writer')
                 writer.innerHTML += memo_author_list[i];
+
                 const line = document.createElement ('div')
                 line.classList.add('line2')
-                const memoContent = document.createElement('div')
+
+                const memoContent = document.createElement('pre')
                 memoContent.classList.add('memo_content')
                 memoContent.innerHTML += memo_content_list[i];
+
                 contentsDiv.appendChild(writer)
                 contentsDiv.appendChild(line)
                 contentsDiv.appendChild(memoContent)
                 outDiv.appendChild(urlDiv);
                 outDiv.appendChild(contentsDiv);
                 memoContainer.append(outDiv);
+
                 const removeImg = document.querySelector('.background_logo');
                 removeImg.style.display = 'none'
+                const bottomdiv = document.createElement('div')
+                memoContainer.appendChild(bottomdiv);
+                // const element = document.getElementById("bottom");
+                bottomdiv.scrollIntoView(false);
             }
 
             pincodeInput.value = pincode

@@ -81,9 +81,14 @@ var memo_content;
 
 
 document.getElementById('memo_submit').addEventListener('click',function(){
+
+    var str = document.getElementById("memo_area").value;
+    str = str.replace(/(?:\r\n|\r|\n)/g, '$%$%');
+
     var encrypt;
     memo_url = String(window.location.href);
     memo_content= String(document.getElementById('memo_area').value);
+
     whale.storage.sync.get('site', result => {
         encrypt=result.site
         whale.storage.sync.get('uid', result => {      
@@ -98,9 +103,15 @@ document.getElementById('memo_submit').addEventListener('click',function(){
                 }).then(resJSON => {            
             })
         });
+
     })
+
+    
+
     const memoReset = document.querySelector('.memo_text')
     memoReset.value = memoReset.defaultValue;
+
+    
 })
 
 
