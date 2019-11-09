@@ -1,5 +1,3 @@
-
-
 whale.storage.sync.get('site', result => {
     const encrypt= result.site
     whale.storage.sync.get('uid', user =>{
@@ -63,24 +61,33 @@ whale.storage.sync.get('site', result => {
                 else {a_tag.innerText= memo_url_list[i].substring(0,50)}
                 a_tag.target= "_blank"
                 urlDiv.appendChild(a_tag)
+
                 const contentsDiv = document.createElement('div')
                 contentsDiv.classList.add('contents_div')
+
                 const writer = document.createElement('div')
                 writer.classList.add('writer')
                 writer.innerHTML += memo_author_list[i];
+
                 const line = document.createElement ('div')
                 line.classList.add('line2')
-                const memoContent = document.createElement('div')
+
+                const memoContent = document.createElement('pre')
                 memoContent.classList.add('memo_content')
                 memoContent.innerHTML += memo_content_list[i];
+
                 contentsDiv.appendChild(writer)
                 contentsDiv.appendChild(line)
                 contentsDiv.appendChild(memoContent)
                 outDiv.appendChild(urlDiv);
                 outDiv.appendChild(contentsDiv);
                 memoContainer.append(outDiv);
+
                 const removeImg = document.querySelector('.background_logo');
                 removeImg.style.display = 'none'
+
+                const element = document.getElementById("bottom");
+                element.scrollIntoView(false);
             }
 
             pincodeInput.value = pincode
