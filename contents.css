@@ -70,3 +70,40 @@
     color: #a6a7a9 !important;
     font-size: 12px !important;
 }
+
+
+/* 공유하기 버튼 효과 */
+
+.tooltiptext {
+    visibility: hidden !important;
+    min-width: 85px !important;
+    background-color: #555 !important;
+    color: #fff !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    text-align: center !important;
+    border-radius: 5px !important;
+    padding: 5px !important;
+    position: absolute !important;
+    z-index: 1000000 !important;
+    top: 110% !important;
+    right: 0 !important;
+    margin-left: -75px !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s !important;
+  }
+  
+  .tooltip .tooltiptext::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    margin-left: -5px !important;
+    border-color: #555 transparent transparent transparent !important;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  

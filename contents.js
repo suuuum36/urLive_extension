@@ -1,11 +1,24 @@
 
+const tooltipDiv = document.createElement('div')
+tooltipDiv.classList.add('tooltip')
+tooltipDiv.style = "z-index: 100000!important; position: fixed!important; right: 17px!important; bottom: 170px!important; cursor: pointer !important;"
+document.body.appendChild(tooltipDiv)
+
+
+const tooltip = document.createElement('div')
+tooltip.classList.add('tooltiptext')
+tooltip.id = 'myTooltip'
+tooltip.innerHTML = "url 공유하기"
+tooltipDiv.appendChild(tooltip);
+
+
 const url = whale.runtime.getURL(`images/share_button.png`);
 console.log(url);
 const img = document.createElement('img')
 img.src = url;
 img.style = "z-index: 100000!important; position: fixed!important; right: 13px!important; bottom: 80px!important;  height: 60px !important; width: auto !important; cursor: pointer !important;"
 img.id= 'shareButton'
-document.body.appendChild(img);
+tooltipDiv.appendChild(img);
 
 
 const url2 = whale.runtime.getURL(`images/memo_button.png`);
@@ -15,6 +28,9 @@ img2.style = "z-index: 100000 !important; position: fixed!important; right: 13px
 img2.id = 'memoButton'
 document.body.appendChild(img2);
 
+
+
+//메모
 
 const memo_bg = whale.runtime.getURL(`images/memobg.png`);
 const container = document.createElement('div')
@@ -107,6 +123,7 @@ document.getElementById('memo_submit').addEventListener('click',function(){
 document.getElementById('shareButton').addEventListener('click',function(){
     const url = String(window.location.href);
     var encrypt; 
+
     whale.storage.sync.get('site', result => {
         // console.log(result.site)
         encrypt=result.site
@@ -122,6 +139,8 @@ document.getElementById('shareButton').addEventListener('click',function(){
                     'Content-Type': 'application/json'
                 }
                 }).then(resJSON => {
+                   
+                    
                     console.log(resJSON) 
             })
         });
@@ -130,8 +149,16 @@ document.getElementById('shareButton').addEventListener('click',function(){
     })
     whale.runtime.sendMessage(`shared`, function() {
     });
-    
+
+    const tooltip = document.getElementById('myTooltip');
+    tooltip.innerHTML = "공유완료!"
 })
 
+
+const again = document.querySelector('.tooltip')
+again.addEventListener("mouseout", () => {
+    var again = document.getElementById("myTooltip");
+    again.innerHTML = "url 공유하기";
+})
 
 

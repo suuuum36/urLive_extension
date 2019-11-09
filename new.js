@@ -28,4 +28,10 @@ whale.storage.sync.get('uid', result => {
             }
         })
     });
+
+    const Reset = document.getElementById('name')
+    Reset.value = Reset.defaultValue;
+    const Reset2 = document.getElementById('nickname')
+    Reset2.value = Reset.defaultValue;
+    
 })

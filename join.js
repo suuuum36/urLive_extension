@@ -17,7 +17,7 @@ whale.storage.sync.get('uid', result => {
             if (!response.ok) {
                 alert('이미 입장하였거나 존재하지 않는 방입니다')
             }
-            return response;
+            return response.json();
         }).then(resJSON => {
             console.log(resJSON)
             const { encrypt } = resJSON
@@ -26,8 +26,15 @@ whale.storage.sync.get('uid', result => {
                 // localStorage.setItem("encrypt", encrypt)
                 whale.storage.sync.set({site: encrypt}, () => {
                 });
+
                 window.location.href='room.html'
             }
         })
     });
+
+    const Reset = document.getElementById('pin')
+    Reset.value = Reset.defaultValue;
+    const Reset2 = document.getElementById('nickname')
+    Reset2.value = Reset.defaultValue;
+    
 })
