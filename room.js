@@ -41,12 +41,12 @@ whale.storage.sync.get('site', result => {
             if (message === `shared`) {
                 setTimeout(function(){
                     window.location.reload();
-                }, 100);
+                }, 1);
             }
             else if (message === 'new_memo'){
                 setTimeout(function(){
                     window.location.reload();
-                }, 100);
+                }, 1);
             }
         });
      
