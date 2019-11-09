@@ -29,4 +29,3 @@ whale.runtime.onInstalled.addListener(function() {
 
   });
 });
-

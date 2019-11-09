@@ -75,9 +75,11 @@ whale.storage.sync.get('site', result => {
             outDiv.appendChild(contentsDiv);
             memoContainer.append(outDiv);
 
-            const removeImg = document.querySelector('.background');
+            const removeImg = document.querySelector('.background_img');
             removeImg.style.display = 'none'
 
+            const removeDiv = document.querySelector('.background_logo');
+            removeDiv.style.display = 'none'
         }
 
         pincodeInput.value = pincode
@@ -121,12 +123,14 @@ whale.storage.sync.get('site', result => {
         })
         
     })
-    
-
-
-
 });
-    
+
+
+
+
+
+
+
 
 // const encrypt = localStorage.getItem('encrypt')
 // console.log(encrypt)
