@@ -149,7 +149,6 @@ document.getElementById('shareButton').addEventListener('click',function(){
 
     const tooltip = document.getElementById('myTooltip');
     tooltip.innerHTML = "공유완료!"
-
 })
 
 

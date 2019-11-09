@@ -76,8 +76,7 @@
 
 .tooltiptext {
     visibility: hidden !important;
-    min-width: 95px !important;
-    min-height: 15px !important;
+    min-width: 85px !important;
     background-color: #555 !important;
     color: #fff !important;
     font-size: 11px !important;
