@@ -51,7 +51,7 @@ whale.storage.sync.get('site', result => {
                     })
                 }, 1500)
             }
-            for (let i=0; i<memo_url_list.length-1; i++){
+            for (let i=memo_url_list.length-2; i>=0; i--){
                 const outDiv = document.createElement ('div')
                 outDiv.classList.add('out_div')
                 const urlDiv =document.createElement ('div')
