@@ -91,7 +91,7 @@ whale.storage.sync.get('uid', result => {
                                 console.log(resJSON)
                                 setTimeout(function(){
                                     window.location.reload();
-                                }, 1000);
+                                }, 1);
                             })
 
                     })
