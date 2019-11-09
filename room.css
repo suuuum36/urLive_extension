@@ -7,10 +7,12 @@
 
 /* 상단바 부분 */
 .header {
+  position: fixed;
   display: flex;
   height: 48px;
   width: 100%; 
   background-color: #ff5343;
+  z-index: 100000;
 }
 
 .textlogo   {
@@ -22,14 +24,22 @@
 }
 
 .second_header {
+  position: fixed;
   display: flex;
   min-height: 48px;
   width: 100%;
   z-index: 99;
   background: #f4f4f4;
+  top: 48px;
 }
 
 /* 방제 + 구성원 */
+
+.memo_list {
+  position: absolute;
+  top: 97px;
+  width: 100%;
+}
 
 .room_name {
   min-width: fit-content;
@@ -229,10 +239,4 @@
   height: 100px;
   width: auto;
   margin:auto;
-}
-
-/* bottom */
-.bottom {
-  position: absolute;
-    width: 100%;
 }

@@ -85,9 +85,10 @@ whale.storage.sync.get('site', result => {
 
                 const removeImg = document.querySelector('.background_logo');
                 removeImg.style.display = 'none'
-
-                const element = document.getElementById("bottom");
-                element.scrollIntoView(false);
+                const bottomdiv = document.createElement('div')
+                memoContainer.appendChild(bottomdiv);
+                // const element = document.getElementById("bottom");
+                bottomdiv.scrollIntoView(false);
             }
 
             pincodeInput.value = pincode
