@@ -32,9 +32,6 @@ whale.storage.sync.get('site', result => {
                     
                     setTimeout(function(){
                         whale.tabs.create({url: shared_urls[shared_urls_length], active: false }, tab =>{
-                            setTimeout(function(){
-                                whale.tabs.remove(tab.id);
-                            },1000);
                         }); 
                     },1000);
                       
