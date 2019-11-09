@@ -12,9 +12,6 @@ window.addEventListener('load', (event) => {
     }
 });
 
-window.onbeforeunload
-
-
 
 whale.storage.sync.get('uid', result => {
     const uid = result.uid
@@ -55,6 +52,9 @@ whale.storage.sync.get('uid', result => {
                     tooltip.classList.add('tooltiptext')
                     tooltip.innerHTML = "방 나가기"
                     deleteDiv.appendChild(tooltip)
+                    
+                    const TouchArea = document.createElement ('div')
+                    TouchArea.classList.add('touch_area')
 
                     const Content = document.createElement('div')
                     Content.classList.add('room_content')
@@ -77,10 +77,11 @@ whale.storage.sync.get('uid', result => {
                     Content.appendChild(div2)
                     Room.appendChild(deleteDiv)
                     Room.appendChild(Content)
+                    Room.appendChild(TouchArea)
                     document.getElementById('roomlist').appendChild(Room)
 
 
-                    Content.addEventListener('click', () => {
+                    TouchArea.addEventListener('click', () => {
 
                         // localStorage.setItem("encrypt", roomUrl[i])
                         whale.storage.sync.set({site: roomUrl[i]}, function() {
@@ -100,19 +101,25 @@ whale.storage.sync.get('uid', result => {
                             })
 
                     })
+                    
                     delete_button.addEventListener('click', () =>{
-                        fetch(`https://still-anchorage-85470.herokuapp.com/delete/${uid}/${roomUrl[i]}/`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }}).then(res => {
-                                return res.json()
-                            }).then(resJSON => {
-                                console.log(resJSON)
-                                
-                                window.location.href='sidebar.html'
-                                window.location.reload(true)
-                            })
+
+                        if (confirm(" 방에서 나가시겠습니까?")==true){
+        
+                            fetch(`https://still-anchorage-85470.herokuapp.com/delete/${uid}/${roomUrl[i]}/`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }}).then(res => {
+                                    return res.json()
+                                }).then(resJSON => {
+                                    console.log(resJSON)
+                                    
+                                    window.location.href='sidebar.html'
+                                    window.location.reload(true)
+                                })
+                            
+                        } else {return;}
 
                     })
                 }

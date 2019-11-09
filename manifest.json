@@ -10,7 +10,7 @@
   "default_locale": "ko",
 
   "sidebar_action": {
-    "default_page": "sidebar.html", 
+    "default_page": "intro.html", 
     "default_icon": {                
       "16": "images/logo5_1.png"
   },

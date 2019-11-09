@@ -108,6 +108,7 @@
 }
 
 .p3 {
+    word-break: break-all;
     display: flex;
     font-size: 12px;
     color: #767676;
@@ -203,4 +204,11 @@
   .delete_div:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+  }
+
+  /* 클릭 영역 */
+  .touch_area {
+    min-width: 83%;
+    position: absolute;
+    height: 100%;
   }

@@ -3,7 +3,7 @@ const url = whale.runtime.getURL(`images/share_button.png`);
 console.log(url);
 const img = document.createElement('img')
 img.src = url;
-img.style = "position: fixed; right: 13px; bottom: 80px;  height: 60px !important; weight: auto !important;"
+img.style = "z-index: 100000!important; position: fixed!important; right: 13px!important; bottom: 80px!important;  height: 60px !important; width: auto !important; cursor: pointer !important;"
 img.id= 'shareButton'
 document.body.appendChild(img);
 
@@ -11,7 +11,7 @@ document.body.appendChild(img);
 const url2 = whale.runtime.getURL(`images/memo_button.png`);
 const img2= document.createElement('img')
 img2.src = url2;
-img2.style = "position: fixed; right: 13px; bottom: 23px;  height: 60px !important; weight: auto !important;"
+img2.style = "z-index: 100000 !important; position: fixed!important; right: 13px!important; bottom: 23px!important;  height: 60px !important; width: auto !important; cursor: pointer !important;"
 img2.id = 'memoButton'
 document.body.appendChild(img2);
 
