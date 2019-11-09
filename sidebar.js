@@ -99,7 +99,6 @@ whale.storage.sync.get('uid', result => {
                                 window.location.href='room.html'
                                 
                             })
-
                     })
                     
                     delete_button.addEventListener('click', () =>{
@@ -116,7 +115,9 @@ whale.storage.sync.get('uid', result => {
                                     console.log(resJSON)
                                     
                                     window.location.href='sidebar.html'
-                                    window.location.reload(true)
+                                    setTimeout(function(){
+                                        window.location.reload();
+                                    }, 1);
                                 })
                             
                         } else {return;}

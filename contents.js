@@ -81,8 +81,6 @@ document.getElementById('memo_submit').addEventListener('click',function(){
             console.log(encrypt)
             
             fetch(`https://still-anchorage-85470.herokuapp.com/memo/${encrypt}/`, {
-    
-            
                 method: 'POST',
                 body: JSON.stringify({"url": memo_url, "content": memo_content, "uid": result.uid}),
                 headers:{
@@ -99,6 +97,9 @@ document.getElementById('memo_submit').addEventListener('click',function(){
     const memoReset = document.querySelector('.memo_text')
     memoReset.value = memoReset.defaultValue;
 
+    whale.runtime.sendMessage(`new_memo`, function() {
+    });
+    
 })
 
 
@@ -120,15 +121,16 @@ document.getElementById('shareButton').addEventListener('click',function(){
                 headers:{
                     'Content-Type': 'application/json'
                 }
-                }).then(res => {
-                    return res.json()
                 }).then(resJSON => {
                     console.log(resJSON) 
-                    const { shared_url, shared_room, sender } = resJSON 
-                    
             })
         });
+        
+
     })
+    whale.runtime.sendMessage(`shared`, function() {
+    });
+    
 })
 
 

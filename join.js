@@ -13,10 +13,12 @@ whale.storage.sync.get('uid', result => {
         headers:{
             'Content-Type': 'application/json'
         }
-        }).then(res => {
-            return res.json()
+        }).then(function(response) {
+            if (!response.ok) {
+                alert('이미 입장하였거나 존재하지 않는 방입니다')
+            }
+            return response;
         }).then(resJSON => {
-            
             console.log(resJSON)
             const { encrypt, exist } = resJSON
             if (encrypt) {
@@ -28,8 +30,6 @@ whale.storage.sync.get('uid', result => {
                 });
                 window.location.href='room.html'
             }
-
-        
         })
     });
 })
