@@ -1,4 +1,3 @@
-
 const tooltipDiv = document.createElement('div')
 tooltipDiv.classList.add('tooltip')
 tooltipDiv.style = "z-index: 100000!important; position: fixed!important; right: 17px!important; bottom: 170px!important; cursor: pointer !important;"
@@ -13,7 +12,6 @@ tooltipDiv.appendChild(tooltip);
 
 
 const url = whale.runtime.getURL(`images/share_button.png`);
-console.log(url);
 const img = document.createElement('img')
 img.src = url;
 img.style = "z-index: 100000!important; position: fixed!important; right: 13px!important; bottom: 80px!important;  height: 60px !important; width: auto !important; cursor: pointer !important;"
@@ -28,9 +26,6 @@ img2.style = "z-index: 100000 !important; position: fixed!important; right: 13px
 img2.id = 'memoButton'
 document.body.appendChild(img2);
 
-
-
-//메모
 
 const memo_bg = whale.runtime.getURL(`images/memobg.png`);
 const container = document.createElement('div')
@@ -48,7 +43,6 @@ container.innerHTML = `
     </div>
 `
 
-// 처음 윈도우 켰을 때 메모 팝업 내용 X //
 
 window.addEventListener('load', (event) => {
     const noPopup = document.querySelector('.memo_box');
@@ -56,8 +50,8 @@ window.addEventListener('load', (event) => {
 });
 
 
-
 document.body.appendChild(container);
+
 
 const cancelButton2 = document.querySelector('.cancel_button2')
 cancelButton2.addEventListener('click', () => {
@@ -84,18 +78,13 @@ var memo_url;
 var memo_content;
 
 
-
 document.getElementById('memo_submit').addEventListener('click',function(){
     var encrypt;
     memo_url = String(window.location.href);
     memo_content= String(document.getElementById('memo_area').value);
     whale.storage.sync.get('site', result => {
-        // console.log(result.site)
         encrypt=result.site
-        // console.log(encrypt)
-        whale.storage.sync.get('uid', result => {
-            console.log(encrypt)
-            
+        whale.storage.sync.get('uid', result => {      
             fetch(`https://still-anchorage-85470.herokuapp.com/memo/${encrypt}/`, {
                 method: 'POST',
                 body: JSON.stringify({"url": memo_url, "content": memo_content, "uid": result.uid}),
@@ -104,18 +93,12 @@ document.getElementById('memo_submit').addEventListener('click',function(){
                 }
                 }).then(res => {
                     return res.json()
-                }).then(resJSON => {
-                    console.log(resJSON)               
+                }).then(resJSON => {            
             })
         });
     })
-
     const memoReset = document.querySelector('.memo_text')
     memoReset.value = memoReset.defaultValue;
-
-    whale.runtime.sendMessage(`new_memo`, function() {
-    });
-    
 })
 
 
@@ -123,32 +106,20 @@ document.getElementById('memo_submit').addEventListener('click',function(){
 document.getElementById('shareButton').addEventListener('click',function(){
     const url = String(window.location.href);
     var encrypt; 
-
     whale.storage.sync.get('site', result => {
-        // console.log(result.site)
         encrypt=result.site
-        // console.log(encrypt)
         whale.storage.sync.get('uid', result => {
-            console.log(encrypt)
-            
             fetch(`https://still-anchorage-85470.herokuapp.com/share/${encrypt}/`, {
-    
                 method: 'POST',
                 body: JSON.stringify({"url": url, "uid": result.uid}),
                 headers:{
                     'Content-Type': 'application/json'
                 }
                 }).then(resJSON => {
-                   
-                    
-                    console.log(resJSON) 
             })
         });
-        
-
     })
-    whale.runtime.sendMessage(`shared`, function() {
-    });
+
 
     const tooltip = document.getElementById('myTooltip');
     tooltip.innerHTML = "공유완료!"
@@ -160,5 +131,3 @@ again.addEventListener("mouseout", () => {
     var again = document.getElementById("myTooltip");
     again.innerHTML = "url 공유하기";
 })
-
-

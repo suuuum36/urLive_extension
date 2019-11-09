@@ -1,4 +1,3 @@
-console.log (100);
 window.addEventListener('load', (event) => {
     if (document.visibilityState === `visible`) { 
         // 사이드바가 열렸을 때
@@ -23,39 +22,29 @@ whale.storage.sync.get('uid', result => {
         }).then(res => {
             return res.json()
         }).then(resJSON => {
-            console.log(resJSON)
-
             const { room_name_arr, room_url_arr, room_part_arr } = resJSON
             const roomName = room_name_arr.split('/')
             const roomUrl = room_url_arr.split('/')
             const roomParti = room_part_arr.split('/')
-            console.log(roomParti)
             document.getElementById('roomCnt').innerText = roomName.length-1;
-            console.log(roomName);
-            console.log(roomUrl);
             if (roomName) {
                 for ( let i=0; i<roomName.length-1; i++) {
                     const Room = document.createElement('div')
                     Room.classList.add('room1')
-
                     const deleteDiv = document.createElement('div')
                     deleteDiv.classList.add('delete_div')
-
                     const deleteImg = whale.runtime.getURL(`images/out_icon.png`);
                     const delete_button = document.createElement('img');
                     delete_button.style = "position: relative; height: 18px; width: auto; margin-top: auto; margin-bottom: auto;"
                     delete_button.src = deleteImg;
                     deleteDiv.appendChild(delete_button)
-
                     //삭제 버튼 tooltip
                     const tooltip = document.createElement ('div')
                     tooltip.classList.add('tooltiptext')
                     tooltip.innerHTML = "방 나가기"
                     deleteDiv.appendChild(tooltip)
-                    
                     const TouchArea = document.createElement ('div')
                     TouchArea.classList.add('touch_area')
-
                     const Content = document.createElement('div')
                     Content.classList.add('room_content')
                     const div1 = document.createElement('div')
@@ -67,7 +56,6 @@ whale.storage.sync.get('uid', result => {
                     //pNum.classList.add('')
                     const participant = roomParti[i].split('=')
                     pNum.innerText = participant.length-1
-                    console.log(participant)
                     for (let j=0; j<participant.length-1; j++){
                         if (j === participant.length-2) div2.innerText += participant[j]
                         else div2.innerText += participant[j] + ', '
@@ -79,28 +67,20 @@ whale.storage.sync.get('uid', result => {
                     Room.appendChild(Content)
                     Room.appendChild(TouchArea)
                     document.getElementById('roomlist').appendChild(Room)
-
-
                     TouchArea.addEventListener('click', () => {
-
                         // localStorage.setItem("encrypt", roomUrl[i])
                         whale.storage.sync.set({site: roomUrl[i]}, function() {
-                            console.log('Value is set to ' + roomUrl[i]);
                         });
                         fetch(`https://still-anchorage-85470.herokuapp.com/${roomUrl[i]}/`, {
-
                             method: 'GET',
                             headers:{
                                 'Content-Type': 'application/json'
                             }}).then(res => {
                                 return res.json()
                             }).then(resJSON => {
-                                console.log(resJSON)
                                 window.location.href='room.html'
-                                
                             })
                     })
-                    
                     delete_button.addEventListener('click', () =>{
                         if (confirm(" 방에서 나가시겠습니까?")==true){
                             fetch(`https://still-anchorage-85470.herokuapp.com/delete/${uid}/${roomUrl[i]}/`, {
@@ -108,7 +88,6 @@ whale.storage.sync.get('uid', result => {
                                 headers: {
                                     'Content-Type': 'application/json'
                                 }}).then(resJSON => {
-                                    console.log(resJSON)
                                     setTimeout(function(){
                                         window.location.reload();
                                     }, 1);
@@ -117,6 +96,5 @@ whale.storage.sync.get('uid', result => {
                     })
                 }
             }
-                    
         })   
 });
