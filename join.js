@@ -17,17 +17,16 @@ whale.storage.sync.get('uid', result => {
             if (!response.ok) {
                 alert('이미 입장하였거나 존재하지 않는 방입니다')
             }
-            return response;
+            return response.json();
         }).then(resJSON => {
             console.log(resJSON)
-            const { encrypt, exist } = resJSON
+            const { encrypt } = resJSON
             if (encrypt) {
                 console.log(encrypt);
                 // localStorage.setItem("encrypt", encrypt)
                 whale.storage.sync.set({site: encrypt}, () => {
                 });
-                whale.storage.sync.set({exist: exist}, () => {
-                });
+                
                 window.location.href='room.html'
             }
         })

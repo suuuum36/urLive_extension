@@ -107,6 +107,7 @@ document.getElementById('memo_submit').addEventListener('click',function(){
 document.getElementById('shareButton').addEventListener('click',function(){
     const url = String(window.location.href);
     var encrypt; 
+
     whale.storage.sync.get('site', result => {
         // console.log(result.site)
         encrypt=result.site
@@ -122,6 +123,8 @@ document.getElementById('shareButton').addEventListener('click',function(){
                     'Content-Type': 'application/json'
                 }
                 }).then(resJSON => {
+                   
+                    
                     console.log(resJSON) 
             })
         });
