@@ -102,26 +102,18 @@ whale.storage.sync.get('uid', result => {
                     })
                     
                     delete_button.addEventListener('click', () =>{
-
                         if (confirm(" 방에서 나가시겠습니까?")==true){
-        
                             fetch(`https://still-anchorage-85470.herokuapp.com/delete/${uid}/${roomUrl[i]}/`, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
-                                }}).then(res => {
-                                    return res.json()
-                                }).then(resJSON => {
+                                }}).then(resJSON => {
                                     console.log(resJSON)
-                                    
-                                    window.location.href='sidebar.html'
                                     setTimeout(function(){
                                         window.location.reload();
                                     }, 1);
                                 })
-                            
                         } else {return;}
-
                     })
                 }
             }
