@@ -78,6 +78,8 @@ var memo_url;
 var memo_content;
 
 
+
+
 document.getElementById('memo_submit').addEventListener('click',function(){
     var encrypt;
     memo_url = String(window.location.href);
