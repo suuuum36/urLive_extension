@@ -230,3 +230,9 @@
   width: auto;
   margin:auto;
 }
+
+/* bottom */
+.bottom {
+  position: absolute;
+    width: 100%;
+}
