@@ -1,8 +1,8 @@
 
 whale.storage.sync.get('site', result => {
-
+    const encrypt= result.site
     whale.storage.sync.get('uid', user =>{
-        const encrypt= result.site
+        
         fetch(`https://still-anchorage-85470.herokuapp.com/${encrypt}/`, {
         method: 'GET',
         headers:{
@@ -43,15 +43,15 @@ whale.storage.sync.get('site', result => {
                 if (the_sender !== user.uid){
                     whale.tabs.create( {url: shared_urls[shared_urls_length]});    
                 }
-                
-                // fetch(`https://still-anchorage-85470.herokuapp.com/share/${encrypt}/`, {
-                //     method: 'PUT',
-                //     body: JSON.stringify({"url": shared_urls[shared_urls_length]}),
-                //     headers: {
-                //         'Content-Type': 'application/json'
-                // }}).then(resJSON => {  
-                // })
-
+                setTimeout( function(){
+                    fetch(`https://still-anchorage-85470.herokuapp.com/share/${encrypt}/`, {
+                        method: 'PUT',
+                        body: JSON.stringify({"url": shared_urls[shared_urls_length]}),
+                        headers: {
+                            'Content-Type': 'application/json'
+                    }}).then(resJSON => {  
+                    })
+                }, 1500)
             }
             whale.runtime.onMessage.addListener((message) => {
                 if (message === `shared`) {
@@ -179,6 +179,7 @@ setInterval(function() {
             whale.storage.sync.get('shared_list', result =>{
                 if (result.shared_list !== shared_list){
                     window.location.reload()
+                  
                 }
 
             });
