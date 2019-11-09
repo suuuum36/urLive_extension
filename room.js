@@ -1,9 +1,3 @@
-
-// chrome.storage.local.get(['encrypt'], function(result) {
-//     console.log('Value currently is ' + result.encrypt)
-//     const encrypt = result.encrypt;
-//     console.log(encrypt)
-
 whale.storage.sync.get('site', result => {
     const encrypt= result.site
     fetch(`https://still-anchorage-85470.herokuapp.com/${encrypt}/`, {
@@ -26,18 +20,39 @@ whale.storage.sync.get('site', result => {
         const memo_url_list = memo_url.split('[partition]') //메모 추가 
         const memo_content_list = memo_content.split('/')
         const memo_author_list = memo_author.split('/')
+
+
         const shared_urls = shared_list.split('[partition]')
 
         const shared_urls_length = shared_urls.length -2
 
         if (shared_urls.length != 1) {
             whale.tabs.create( {url: shared_urls[shared_urls_length]});
+            fetch(`https://still-anchorage-85470.herokuapp.com/share/${encrypt}/`, {
+                method: 'PUT',
+                body: JSON.stringify({"url": shared_urls[shared_urls_length]}),
+                headers: {
+                    'Content-Type': 'application/json'
+            }}).then(resJSON => {  
+            })
+
         }
-        
+        whale.runtime.onMessage.addListener((message) => {
+            if (message === `shared`) {
+                setTimeout(function(){
+                    window.location.reload();
+                }, 100);
+            }
+            else if (message === 'new_memo'){
+                setTimeout(function(){
+                    window.location.reload();
+                }, 100);
+            }
+        });
+     
         console.log(shared_urls)
 
 
-        //이 부분 다시 짜야 cs 적용 가능.
         for (let i=0; i<memo_url_list.length-1; i++){
 
             const outDiv = document.createElement ('div')
@@ -128,36 +143,5 @@ whale.storage.sync.get('site', result => {
 });
     
 
-// const encrypt = localStorage.getItem('encrypt')
 
-
-
-// window.addEventListener(`DOMContentLoaded`, () => {
-//     // 처음 로딩 될 때: 메시지가 있는지 확인하고 삭제
-//     whale.storage.sync.get(`message`, storage => {
-//         console.log(storage.message); // = Hello
-//         if (storage.message) { whale.tabs.create( {url: storage.message});}
-//         whale.storage.sync.remove(`message`);
-        
-//     });
-//     whale.storage.onChanged.addListener((changes, areaName) => {
-//         window.location.reload(true)
-//         if (areaName === `local` && changes.newValue) {
-//             if (`message` in changes.newValue ) {
-//                 console.log(changes.newValue.message);
-//             }
-//             window.location.reload(true)
-//         }
-        
-//     });
-    
-// });
-
-
-
-
-
-// setTimeout(function() {
-//     location.reload();
-// }, 30000);
 

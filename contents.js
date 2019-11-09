@@ -98,6 +98,8 @@ document.getElementById('memo_submit').addEventListener('click',function(){
             })
         });
     })
+    whale.runtime.sendMessage(`new_memo`, function() {
+    });
     
 })
 
@@ -119,15 +121,16 @@ document.getElementById('shareButton').addEventListener('click',function(){
                 headers:{
                     'Content-Type': 'application/json'
                 }
-                }).then(res => {
-                    return res.json()
                 }).then(resJSON => {
                     console.log(resJSON) 
-                    const { shared_url, shared_room, sender } = resJSON 
-                    
             })
         });
+        
+
     })
+    whale.runtime.sendMessage(`shared`, function() {
+    });
+    
 })
 
 

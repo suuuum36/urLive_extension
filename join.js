@@ -26,6 +26,7 @@ whale.storage.sync.get('uid', result => {
                 });
                 window.location.href='room.html'
             }
+            
 
         
         })

@@ -65,8 +65,6 @@ whale.storage.sync.get('uid', result => {
                     document.getElementById('roomlist').appendChild(Room)
                     
                     Content.addEventListener('click', () => {
-
-
                         // localStorage.setItem("encrypt", roomUrl[i])
                         whale.storage.sync.set({site: roomUrl[i]}, function() {
                             console.log('Value is set to ' + roomUrl[i]);
@@ -83,20 +81,17 @@ whale.storage.sync.get('uid', result => {
                                 window.location.href='room.html'
                                 
                             })
-
                     })
                     delete_button.addEventListener('click', () =>{
                         fetch(`https://still-anchorage-85470.herokuapp.com/delete/${uid}/${roomUrl[i]}/`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
-                            }}).then(res => {
-                                return res.json()
-                            }).then(resJSON => {
+                            }}).then(resJSON => {
                                 console.log(resJSON)
-                                
-                                window.location.href='sidebar.html'
-                                window.location.reload(true)
+                                setTimeout(function(){
+                                    window.location.reload();
+                                }, 1000);
                             })
 
                     })
