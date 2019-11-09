@@ -16,43 +16,39 @@ img2.id = 'memoButton'
 document.body.appendChild(img2);
 
 
-const url3 = whale.runtime.getURL(`images/cancel_button.png`);
+const memo_bg = whale.runtime.getURL(`images/memobg.png`);
 const container = document.createElement('div')
 container.innerHTML = `
     <div class = "memo_box">
-    <div class = "memo_top">
-        <img class = "cancel_button css" src= ${url3} style = "height: 7px; width: auto; padding-right: 5px;">
-    </div>
-
-    <div class = "memo_bottom">
-    <div class = "memo_bottom_in">
-        <div class = "memo_text_area">
-        <textarea class = "memo_text" id="memo_area" name="메모입력" rows="1" cols="1" placeholder="메모를 입력하세요."></textarea>
-        <div class = "memo_submit_button">
-            <input class = "submit_button" type="submit" id="memo_submit" value="저장"/>
-            <input class = 'cancel_button2' type="submit" value="취소"/>
-        </div>
-        </div>
-    </div>
-    </div>
+            <div class = "memo_bottom_in">
+                <div class = "memo_text_area" >
+                    <textarea class = "memo_text" id="memo_area" name="메모입력" rows="1" cols="1" placeholder="메모를 입력하세요."></textarea>
+                    <div class = "memo_submit_button">
+                        <input class = "submit_button" type="submit" id="memo_submit" value="저장"/>
+                        <input class = 'cancel_button2' type="submit" value="취소"/>
+                    </div>
+                </div>
+            </div>
     </div>
 `
 
+// 처음 윈도우 켰을 때 메모 팝업 내용 X //
+
+window.addEventListener('load', (event) => {
+    const noPopup = document.querySelector('.memo_box');
+    noPopup.style.display = 'none'
+});
 
 
 
 document.body.appendChild(container);
 
-const cancelButton = document.querySelector('.cancel_button')
-cancelButton.addEventListener('click', () => {
-    const memoBox = document.querySelector('.memo_box')
-    memoBox.style.display = 'none'
-})
-
 const cancelButton2 = document.querySelector('.cancel_button2')
 cancelButton2.addEventListener('click', () => {
     const memoBox = document.querySelector('.memo_box')
     memoBox.style.display = 'none'
+    const memoReset = document.querySelector('.memo_text')
+    memoReset.value = memoReset.defaultValue;
 })
 
 const submitButton = document.querySelector('.submit_button')
@@ -70,6 +66,7 @@ memoButton.addEventListener('click', () => {
 
 var memo_url;
 var memo_content;
+
 
 
 document.getElementById('memo_submit').addEventListener('click',function(){
@@ -98,8 +95,12 @@ document.getElementById('memo_submit').addEventListener('click',function(){
             })
         });
     })
-    
+
+    const memoReset = document.querySelector('.memo_text')
+    memoReset.value = memoReset.defaultValue;
+
 })
+
 
 //공유하기 버튼//
 document.getElementById('shareButton').addEventListener('click',function(){
@@ -129,7 +130,6 @@ document.getElementById('shareButton').addEventListener('click',function(){
         });
     })
 })
-
 
 
 

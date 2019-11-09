@@ -12,6 +12,10 @@ window.addEventListener('load', (event) => {
     }
 });
 
+window.onbeforeunload
+
+
+
 whale.storage.sync.get('uid', result => {
     const uid = result.uid
     fetch(`https://still-anchorage-85470.herokuapp.com/list/${uid}`, {
