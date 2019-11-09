@@ -27,5 +27,4 @@ whale.storage.sync.get('uid', result => {
     Reset.value = Reset.defaultValue;
     const Reset2 = document.getElementById('nickname')
     Reset2.value = Reset.defaultValue;
-    
 })
