@@ -26,7 +26,7 @@ whale.storage.sync.get('uid', result => {
                 // localStorage.setItem("encrypt", encrypt)
                 whale.storage.sync.set({site: encrypt}, () => {
                 });
-                
+
                 window.location.href='room.html'
             }
         })
