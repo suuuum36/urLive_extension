@@ -3,7 +3,7 @@
   "name": "__MSG_urLive__",
   "version": "1.0.0",
 
-  "description": "url live sharing service",
+  "description": "URL 라이브 공유 서비스",
   "icons": {
     "16": "images/logo5_1.png"
   },
