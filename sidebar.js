@@ -1,3 +1,9 @@
+
+
+whale.storage.sync.set({toggle: 'false'}, function() {
+});
+
+
 window.addEventListener('load', (event) => {
     if (document.visibilityState === `visible`) { 
         // 사이드바가 열렸을 때

@@ -1,3 +1,6 @@
+whale.storage.sync.set({toggle: 'false'}, function() {
+});
+
 const makeButton = document.querySelector('.make_room_button')
 
 

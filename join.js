@@ -1,3 +1,7 @@
+whale.storage.sync.set({toggle: 'false'}, function() {
+});
+
+
 const enterButton = document.querySelector('.enter_room_button')
 
 enterButton.addEventListener('click', () => {

@@ -1,3 +1,6 @@
+whale.storage.sync.set({toggle: 'true'}, function() {
+});
+
 whale.storage.sync.get('site', result => {
     const encrypt= result.site
     whale.storage.sync.get('uid', user =>{

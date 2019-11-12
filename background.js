@@ -20,6 +20,7 @@ function robotFactory(n){
 whale.runtime.onInstalled.addListener(function() {
   const myRobotArmy = robotFactory();
   whale.storage.sync.set({uid: myRobotArmy.name}, () => {
-
   });
+  
+  
 });
