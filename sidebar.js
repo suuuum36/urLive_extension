@@ -35,13 +35,16 @@ whale.storage.sync.get('uid', result => {
             document.getElementById('roomCnt').innerText = roomName.length-1;
             if (roomName.length-1 === 0) {
                 const youtubeDiv = document.createElement('div')
-                youtubeDiv.classList.add('youtube_div')
+                youtubeDiv.id = 'youtube_div'
                 const youtubeImg = whale.runtime.getURL('images/youtube_icon.png')
                 const youtube_button = document.createElement('img')
                 youtube_button.style = "position: absolute; display: flex; width: 100vw; height: 100vh;"
                 youtube_button.src = youtubeImg;
                 youtubeDiv.appendChild(youtube_button)
                 document.getElementById('roomlist').appendChild(youtubeDiv);
+                document.getElementById('youtube_div').addEventListener('click',function(){
+                    window.location.href = "https://www.youtube.com/watch?v=bsFHh-MWM3M";
+                });
             }
             if (roomName) {
                 for ( let i=0; i<roomName.length-1; i++) {
