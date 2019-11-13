@@ -1,19 +1,15 @@
-
-
 whale.storage.sync.set({toggle: 'false'}, function() {
 });
 
 
 window.addEventListener('load', (event) => {
     if (document.visibilityState === `visible`) { 
-        // 사이드바가 열렸을 때
         const background = document.querySelector('.background');
         setTimeout(() => {
             background.style.display = 'none'
         }, 1500)
     } else {
         background.style.display = 'none'
-        // 사이드바가 닫혔을 때
     }
 });
 
@@ -39,47 +35,19 @@ whale.storage.sync.get('uid', result => {
                 const youtubeDiv = document.createElement('div')
                 youtubeDiv.classList.add('youtube_div')
                 youtubeDiv.style = "display: inline-grid; margin: auto;"
-                
-                // const youtubeHeader = document.createElement('div')
-                // youtubeHeader.classList.add('youtube_header')
-                // youtubeHeader.style = "width: fit-content; heigh: fit-content; display: flex; align-items: flex-end; margin-bottom: 3px;"
-
-                // const Y1img = whale.runtime.getURL('images/red_logo.png')
-                // const Y1 = document.createElement('img')
-                // Y1.style = "height: 35px; width: auto; margin-left: 11px;"
-                // Y1.src = Y1img;
-
                 const Y2 = document.createElement('p')
                 Y2.innerText = "urLive 사용법 영상 보러가기"
                 Y2.style = "font-size: 14px; color: #fc9997; height: fit-content;"
-
-                // const Y3img = whale.runtime.getURL('images/quit.png')
-                // const Y3 = document.createElement('img')
-                // Y3.src = Y3img;
-                // Y3.style = "height: 13px; width: 13px; cursor: pointer;"
-
-                // Y3.addEventListener ('click', () =>{
-                //     youtubeDiv.style.display = 'none'
-                // });
-
                 const youtubeImg = whale.runtime.getURL('images/playbutton.png')
                 const youtube_button = document.createElement('img')
                 youtube_button.style = "margin-right: auto; margin-left: auto; margin-bottom: 15px; height: 70px; width: auto; cursor: pointer"
                 youtube_button.src = youtubeImg;
-
                 youtube_button.addEventListener ('click', () =>{
                     whale.tabs.create({url: "https://youtu.be/bsFHh-MWM3M"});   
                 });
-
-                // youtubeDiv.appendChild(youtubeHeader)
                 youtubeDiv.appendChild(youtube_button)
                 youtubeDiv.appendChild(Y2)
-                // youtubeHeader.appendChild(Y1)
-                // youtubeHeader.appendChild(Y2)
-                // youtubeHeader.appendChild(Y3)
                 document.getElementById('background').appendChild(youtubeDiv);
-
-
             }
             if (roomName) {
                 for ( let i=0; i<roomName.length-1; i++) {
