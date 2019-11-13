@@ -9,6 +9,7 @@
     background-color: white !important;
     box-shadow: -0.95px -1.91px 4.77px 0px #cccccc !important;
     z-index: 1000000000 !important;
+    display: none;
 }
 
 .memo_top {

@@ -33,6 +33,16 @@ whale.storage.sync.get('uid', result => {
             const roomUrl = room_url_arr.split('/')
             const roomParti = room_part_arr.split('/')
             document.getElementById('roomCnt').innerText = roomName.length-1;
+            if (roomName.length-1 === 0) {
+                const youtubeDiv = document.createElement('div')
+                youtubeDiv.classList.add('youtube_div')
+                const youtubeImg = whale.runtime.getURL('images/youtube_icon.png')
+                const youtube_button = document.createElement('img')
+                youtube_button.style = "position: absolute; display: flex; width: 100vw; height: 100vh;"
+                youtube_button.src = youtubeImg;
+                youtubeDiv.appendChild(youtube_button)
+                document.getElementById('roomlist').appendChild(youtubeDiv);
+            }
             if (roomName) {
                 for ( let i=0; i<roomName.length-1; i++) {
                     const Room = document.createElement('div')

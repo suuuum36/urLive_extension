@@ -27,6 +27,8 @@ whale.storage.sync.get('site', result => {
             });
             whale.storage.sync.set({shared_list: shared_list}, () => {
             });
+            whale.storage.sync.set({peopleNum: users.length -1}, () => {
+            });
             const shared_urls = shared_list.split('[partition]')
             const shared_urls_length = shared_urls.length -2
             const the_sender = sender.split('/')[0]

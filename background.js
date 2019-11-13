@@ -1,5 +1,8 @@
 'use strict';
 
+whale.storage.sync.set({toggle: 'false'}, function() {
+});
+
 function Robot() {
   this.name = Robot.makeId();
  }
