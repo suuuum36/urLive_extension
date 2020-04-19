@@ -5,7 +5,8 @@
 
   "description": "URL 라이브 공유 서비스",
   "icons": {
-    "16": "images/logo5_1.png"
+    "16": "images/logo5_1.png",
+    "48": "images/logo5_2.png"
   },
   "default_locale": "ko",
 
